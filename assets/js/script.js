@@ -5,6 +5,11 @@ var taskFormHandler = function(event) { //event is a way to target something hap
     event.preventDefault(); //preventDefault in this case prevents the submit event from reloading the page automatically
 var taskNameInput = document.querySelector("input[name='task-name']").value; //this targets the value of the taskNameInput variable
 var taskTypeInput = document.querySelector("select[name='task-type']").value;//targets the value for the option withing the select element
+if(!taskNameInput || !taskTypeInput) {
+    alert("You need to fill out the task form!");
+    return false;//this if will prevent a submition from occuring if either of the two fields are empty, and alert them
+}
+formEl.reset();
 var taskDataObj = {
     name: taskNameInput,//lines 8-11 package the data as an object
     type: taskTypeInput
