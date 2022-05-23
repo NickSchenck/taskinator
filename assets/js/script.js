@@ -23,11 +23,13 @@ var taskFormHandler = function(event) {
 
   // check if task is new or one being edited by seeing if it has a data-task-id attribute
   var isEdit = formEl.hasAttribute("data-task-id");
-
+  // has data attribute, so get task id and call function to complete edit process
   if (isEdit) {
     var taskId = formEl.getAttribute("data-task-id");
     completeEditTask(taskNameInput, taskTypeInput, taskId);
-  } else {
+  } 
+  // no data attribute, so create object as normal and pass to createTaskEl function
+  else {
     var taskDataObj = {
       name: taskNameInput,
       type: taskTypeInput
@@ -132,19 +134,22 @@ var taskButtonHandler = function(event) {
 var taskStatusChangeHandler = function(event) {
   console.log(event.target.value);
 
-  // find task list item based on event.target's data-task-id attribute
+  // get the task item's id
   var taskId = event.target.getAttribute("data-task-id");
 
+  // find the parent task item element based on the id
   var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
 
-  // convert value to lower case
+  // get the currently selected option's value and convert to lowercase
   var statusValue = event.target.value.toLowerCase();
 
   if (statusValue === "to do") {
     tasksToDoEl.appendChild(taskSelected);
-  } else if (statusValue === "in progress") {
+  }
+   else if (statusValue === "in progress") {
     tasksInProgressEl.appendChild(taskSelected);
-  } else if (statusValue === "completed") {
+  }
+   else if (statusValue === "completed") {
     tasksCompletedEl.appendChild(taskSelected);
   }
 };
