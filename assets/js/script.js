@@ -250,3 +250,4 @@ let loadTasks = function() {
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
 
 loadTasks();
+console.log(tasks)
